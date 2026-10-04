@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>pe.com.galaxy.enterprise.java.libs</groupId>
-	<artifactId>lib-domain-core</artifactId>
+	<artifactId>lib-encryption-core</artifactId>
 	<version>1.0.0</version>
 
 	<name>lib-encryption-core</name>
