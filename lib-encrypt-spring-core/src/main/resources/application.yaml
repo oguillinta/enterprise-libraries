@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: lib-encrypt-spring-core
+
+security:
+  encryption:
+    key: ${ENCRYPTION_KEY:123456}
