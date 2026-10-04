@@ -25,7 +25,7 @@ without coupling consumers to Spring or other application frameworks.
 ## Package Structure
 
 ```text
-pe.com.galaxy.enterprise.java.libs.lib_mask_core
+pe.com.galaxy.enterprise.java.libs.lib_mask_spring_core
 ├── contract
 │   └── MaskerService
 │

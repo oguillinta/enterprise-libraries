@@ -4,26 +4,70 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>pe.com.galaxy.enterprise.java.libs</groupId>
 	<artifactId>lib-mask-spring-core</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name/>
-	<description/>
 	<url/>
+
+	<description>
+		Spring integration library providing annotation-driven and Jackson-based data masking for Java applications
+	</description>
+
 	<licenses>
-		<license/>
+		<license>
+			<name>Apache License 2.0</name>
+			<url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
 	</licenses>
+
 	<developers>
-		<developer/>
+		<developer>
+			<id>oguillinta</id>
+			<name>Oscar Guillinta</name>
+			<roles>
+				<role>Developer</role>
+			</roles>
+		</developer>
 	</developers>
-	<scm>
-		<connection/>
-		<developerConnection/>
-		<tag/>
-		<url/>
-	</scm>
+
 	<properties>
 		<java.version>25</java.version>
+
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
 		<org.junit.jupiter.version>5.13.4</org.junit.jupiter.version>
+
+		<maven.compiler.plugin.version>3.14.0</maven.compiler.plugin.version>
+		<maven.surefire.plugin.version>3.5.4</maven.surefire.plugin.version>
+		<maven.source.plugin.version>3.3.1</maven.source.plugin.version>
+		<maven.javadoc.plugin.version>3.11.2</maven.javadoc.plugin.version>
+
+		<lib.mask.core.version>1.1.0</lib.mask.core.version>
+
+		<spring.context.version>7.0.9</spring.context.version>
+
+		<jackson.databind.version>3.2.3</jackson.databind.version>
 	</properties>
+
+	<scm>
+		<connection>
+			scm:git:https://github.com/oguillinta/enterprise-libraries.git
+		</connection>
+		<developerConnection>
+			scm:git:ssh://git@github.com/oguillinta/enterprise-libraries.git
+		</developerConnection>
+		<tag>HEAD</tag>
+		<url>https://github.com/oguillinta/enterprise-libraries</url>
+	</scm>
+
+	<distributionManagement>
+		<repository>
+			<id>github</id>
+			<name>GitHub Packages</name>
+			<url>https://maven.pkg.github.com/oguillinta/enterprise-libraries</url>
+		</repository>
+	</distributionManagement>
 
 	<dependencies>
 		<dependency>
@@ -35,28 +79,44 @@
 		<dependency>
 			<groupId>pe.com.galaxy.enterprise.java.libs</groupId>
 			<artifactId>lib-mask-core</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>${lib.mask.core.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
-			<version>7.0.9</version>
+			<version>${spring.context.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>tools.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
-			<version>3.2.2</version>
+			<version>3.2.3</version>
 		</dependency>
 	</dependencies>
 
 
 	<build>
 		<plugins>
-			<!-- Generates lib-name-version-sources.jar -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven.compiler.plugin.version}</version>
+
+				<configuration>
+					<release>${java.version}</release>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${maven.surefire.plugin.version}</version>
+			</plugin>
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-source-plugin</artifactId>
-				<version>3.3.1</version>
+				<version>${maven.source.plugin.version}</version>
+
 				<executions>
 					<execution>
 						<id>attach-sources</id>
@@ -67,11 +127,11 @@
 				</executions>
 			</plugin>
 
-			<!-- Generates lib-name-version-javadoc.jar -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>3.11.2</version>
+				<version>${maven.javadoc.plugin.version}</version>
+
 				<executions>
 					<execution>
 						<id>attach-javadocs</id>
@@ -81,14 +141,7 @@
 					</execution>
 				</executions>
 			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>25</source>
-					<target>25</target>
-				</configuration>
-			</plugin>
+
 		</plugins>
 	</build>
 
