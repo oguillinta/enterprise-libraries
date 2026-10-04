@@ -1,7 +1,7 @@
-package pe.com.galaxy.enterprise.java.libs.lib_mask_spring_core;
+package pe.com.galaxy.enterprise.java.libs.lib_mask_core;
 
 import org.junit.jupiter.api.Test;
-import pe.com.galaxy.enterprise.java.libs.lib_mask_spring_core.model.MaskType;
+import pe.com.galaxy.enterprise.java.libs.lib_mask_core.model.MaskType;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

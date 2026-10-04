@@ -1,7 +1,7 @@
 package pe.com.galaxy.enterprise.java.libs.lib_mask_spring_core.jackson;
 
 import pe.com.galaxy.enterprise.java.libs.lib_mask_spring_core.annotation.Masked;
-import pe.com.galaxy.enterprise.java.libs.lib_mask_spring_core.contract.MaskerService;
+import pe.com.galaxy.enterprise.java.libs.lib_mask_core.contract.MaskerService;
 import tools.jackson.databind.BeanDescription;
 import tools.jackson.databind.SerializationConfig;
 import tools.jackson.databind.ser.BeanPropertyWriter;

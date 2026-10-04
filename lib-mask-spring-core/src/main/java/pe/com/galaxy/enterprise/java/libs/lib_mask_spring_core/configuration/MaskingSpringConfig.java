@@ -2,10 +2,10 @@ package pe.com.galaxy.enterprise.java.libs.lib_mask_spring_core.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import pe.com.galaxy.enterprise.java.libs.lib_mask_spring_core.contract.MaskerService;
-import pe.com.galaxy.enterprise.java.libs.lib_mask_spring_core.handler.MaskingStrategyHandler;
+import pe.com.galaxy.enterprise.java.libs.lib_mask_core.strategy.*;
+import pe.com.galaxy.enterprise.java.libs.lib_mask_core.contract.MaskerService;
+import pe.com.galaxy.enterprise.java.libs.lib_mask_core.handler.MaskingStrategyHandler;
 import pe.com.galaxy.enterprise.java.libs.lib_mask_spring_core.jackson.MaskingValueSerializerModifier;
-import pe.com.galaxy.enterprise.java.libs.lib_mask_spring_core.strategy.*;
 import tools.jackson.databind.JacksonModule;
 import tools.jackson.databind.module.SimpleModule;
 

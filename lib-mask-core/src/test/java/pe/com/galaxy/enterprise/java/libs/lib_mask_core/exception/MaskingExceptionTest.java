@@ -1,4 +1,4 @@
-package pe.com.galaxy.enterprise.java.libs.lib_mask_spring_core.exception;
+package pe.com.galaxy.enterprise.java.libs.lib_mask_core.exception;
 
 import org.junit.jupiter.api.Test;
 

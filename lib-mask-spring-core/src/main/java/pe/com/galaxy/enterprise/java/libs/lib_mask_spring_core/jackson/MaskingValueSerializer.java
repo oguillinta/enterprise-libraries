@@ -1,8 +1,8 @@
 package pe.com.galaxy.enterprise.java.libs.lib_mask_spring_core.jackson;
 
 
-import pe.com.galaxy.enterprise.java.libs.lib_mask_spring_core.contract.MaskerService;
-import pe.com.galaxy.enterprise.java.libs.lib_mask_spring_core.model.MaskType;
+import pe.com.galaxy.enterprise.java.libs.lib_mask_core.contract.MaskerService;
+import pe.com.galaxy.enterprise.java.libs.lib_mask_core.model.MaskType;
 import tools.jackson.core.JacksonException;
 import tools.jackson.core.JsonGenerator;
 import tools.jackson.databind.SerializationContext;

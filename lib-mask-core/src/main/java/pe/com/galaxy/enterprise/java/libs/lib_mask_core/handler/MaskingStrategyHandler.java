@@ -1,9 +1,9 @@
-package pe.com.galaxy.enterprise.java.libs.lib_mask_spring_core.handler;
+package pe.com.galaxy.enterprise.java.libs.lib_mask_core.handler;
 
-import pe.com.galaxy.enterprise.java.libs.lib_mask_spring_core.contract.MaskerService;
-import pe.com.galaxy.enterprise.java.libs.lib_mask_spring_core.exception.MaskingException;
-import pe.com.galaxy.enterprise.java.libs.lib_mask_spring_core.model.MaskType;
-import pe.com.galaxy.enterprise.java.libs.lib_mask_spring_core.strategy.MaskingStrategy;
+import pe.com.galaxy.enterprise.java.libs.lib_mask_core.contract.MaskerService;
+import pe.com.galaxy.enterprise.java.libs.lib_mask_core.exception.MaskingException;
+import pe.com.galaxy.enterprise.java.libs.lib_mask_core.model.MaskType;
+import pe.com.galaxy.enterprise.java.libs.lib_mask_core.strategy.MaskingStrategy;
 
 import java.util.EnumMap;
 import java.util.List;

@@ -1,9 +1,10 @@
-package pe.com.galaxy.enterprise.java.libs.lib_mask_spring_core;
+package pe.com.galaxy.enterprise.java.libs.lib_mask_core;
 
-import pe.com.galaxy.enterprise.java.libs.lib_mask_spring_core.contract.MaskerService;
-import pe.com.galaxy.enterprise.java.libs.lib_mask_spring_core.handler.MaskingStrategyHandler;
-import pe.com.galaxy.enterprise.java.libs.lib_mask_spring_core.model.MaskType;
-import pe.com.galaxy.enterprise.java.libs.lib_mask_spring_core.strategy.*;
+import pe.com.galaxy.enterprise.java.libs.lib_mask_core.strategy.*;
+import pe.com.galaxy.enterprise.java.libs.lib_mask_core.contract.MaskerService;
+import pe.com.galaxy.enterprise.java.libs.lib_mask_core.handler.MaskingStrategyHandler;
+import pe.com.galaxy.enterprise.java.libs.lib_mask_core.model.MaskType;
+import pe.com.galaxy.enterprise.java.libs.lib_mask_core.strategy.*;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package pe.com.galaxy.enterprise.java.libs.lib_mask_spring_core.annotation;
 
-import pe.com.galaxy.enterprise.java.libs.lib_mask_spring_core.model.MaskType;
+import pe.com.galaxy.enterprise.java.libs.lib_mask_core.model.MaskType;
 
 import java.lang.annotation.*;
 
@@ -12,5 +12,6 @@ import java.lang.annotation.*;
         ElementType.RECORD_COMPONENT
 })
 public @interface Masked {
+
     MaskType value();
 }

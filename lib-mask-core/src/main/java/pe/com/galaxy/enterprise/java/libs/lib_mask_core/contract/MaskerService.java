@@ -1,6 +1,6 @@
-package pe.com.galaxy.enterprise.java.libs.lib_mask_spring_core.contract;
+package pe.com.galaxy.enterprise.java.libs.lib_mask_core.contract;
 
-import pe.com.galaxy.enterprise.java.libs.lib_mask_spring_core.model.MaskType;
+import pe.com.galaxy.enterprise.java.libs.lib_mask_core.model.MaskType;
 
 /**
  * Defines the contract for masking sensitive values.

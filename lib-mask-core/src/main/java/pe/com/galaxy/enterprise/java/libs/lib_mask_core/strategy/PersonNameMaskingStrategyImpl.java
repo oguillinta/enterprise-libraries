@@ -1,6 +1,6 @@
-package pe.com.galaxy.enterprise.java.libs.lib_mask_spring_core.strategy;
+package pe.com.galaxy.enterprise.java.libs.lib_mask_core.strategy;
 
-import pe.com.galaxy.enterprise.java.libs.lib_mask_spring_core.model.MaskType;
+import pe.com.galaxy.enterprise.java.libs.lib_mask_core.model.MaskType;
 
 /**
  * Masks personal names while preserving the first character of each

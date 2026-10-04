@@ -1,4 +1,4 @@
-package pe.com.galaxy.enterprise.java.libs.lib_mask_spring_core.model;
+package pe.com.galaxy.enterprise.java.libs.lib_mask_core.model;
 
 /**
  * Defines configurable options for generic masking operations.
