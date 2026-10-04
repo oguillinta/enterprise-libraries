@@ -30,5 +30,10 @@ public enum MaskType {
     /**
      * Bank account number masking.
      */
-    ACCOUNT_NUMBER
+    ACCOUNT_NUMBER,
+
+    /**
+     * Person name masking.
+     */
+    PERSON_NAME
 }
