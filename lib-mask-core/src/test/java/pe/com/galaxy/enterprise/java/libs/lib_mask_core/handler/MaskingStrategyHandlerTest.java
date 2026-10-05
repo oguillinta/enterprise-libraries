@@ -1,110 +1,178 @@
 package pe.com.galaxy.enterprise.java.libs.lib_mask_core.handler;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import pe.com.galaxy.enterprise.java.libs.lib_mask_core.contract.MaskerService;
 import pe.com.galaxy.enterprise.java.libs.lib_mask_core.exception.MaskingException;
+import pe.com.galaxy.enterprise.java.libs.lib_mask_core.model.MaskingOptions;
 import pe.com.galaxy.enterprise.java.libs.lib_mask_core.model.MaskType;
-import pe.com.galaxy.enterprise.java.libs.lib_mask_core.strategy.MaskingStrategy;
+import pe.com.galaxy.enterprise.java.libs.lib_mask_core.strategy.CardMaskingStrategyImpl;
+import pe.com.galaxy.enterprise.java.libs.lib_mask_core.strategy.EmailMaskingStrategyImpl;
+import pe.com.galaxy.enterprise.java.libs.lib_mask_core.strategy.PersonNameMaskingStrategyImpl;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-/**
- * Unit tests for the {@link MaskingStrategyHandler}.
- *
- * <p>Verifies strategy registration, strategy resolution, delegation,
- * duplicate detection, and handling of null or blank values.</p>
- *
- * @since 0.0.1
- */
-public class MaskingStrategyHandlerTest {
+class MaskingStrategyHandlerTest {
 
-    @Test
-    void shouldDelegateMaskingToRegisteredStrategy() {
-        MaskingStrategy strategy = new TestMaskingStrategy(MaskType.EMAIL, "MASKED_EMAIL");
+    private MaskerService maskerService;
 
-        MaskingStrategyHandler handler = new MaskingStrategyHandler(List.of(strategy));
-
-        String result = handler.mask(
-                "test@example.com",
-                MaskType.EMAIL
-        );
-
-        assertEquals("MASKED_EMAIL", result);
+    @BeforeEach
+    void setUp() {
+        maskerService =
+                new MaskingStrategyHandler(
+                        List.of(
+                                new EmailMaskingStrategyImpl(),
+                                new CardMaskingStrategyImpl(),
+                                new PersonNameMaskingStrategyImpl()
+                        )
+                );
     }
 
     @Test
-    void shouldReturnNullWhenValueIsNull() {
-        MaskingStrategyHandler handler = new MaskingStrategyHandler(List.of());
+    void shouldUseDefaultStrategyConfiguration() {
+        String result =
+                maskerService.mask(
+                        "Nasly",
+                        MaskType.PERSON_NAME
+                );
 
+        assertEquals(
+                "N****",
+                result
+        );
+    }
+
+    @Test
+    void shouldDelegateCustomOptionsToStrategy() {
+        MaskingOptions options =
+                new MaskingOptions(
+                        2,
+                        0,
+                        '*'
+                );
+
+        String result =
+                maskerService.mask(
+                        "Nasly",
+                        MaskType.PERSON_NAME,
+                        options
+                );
+
+        assertEquals(
+                "Na***",
+                result
+        );
+    }
+
+    @Test
+    void shouldApplyCustomOptionsToEmailStrategy() {
+        MaskingOptions options =
+                new MaskingOptions(
+                        2,
+                        2,
+                        '*'
+                );
+
+        String result =
+                maskerService.mask(
+                        "nasly.gomez@email.com",
+                        MaskType.EMAIL,
+                        options
+                );
+
+        assertEquals(
+                "na*******ez@email.com",
+                result
+        );
+    }
+
+    @Test
+    void shouldApplyCustomOptionsToCardStrategy() {
+        MaskingOptions options =
+                new MaskingOptions(
+                        6,
+                        4,
+                        '*'
+                );
+
+        String result =
+                maskerService.mask(
+                        "4556123412345678",
+                        MaskType.CARD_NUMBER,
+                        options
+                );
+
+        assertEquals(
+                "455612******5678",
+                result
+        );
+    }
+
+    @Test
+    void shouldRejectMissingStrategy() {
+        MaskerService limitedService =
+                new MaskingStrategyHandler(
+                        List.of(
+                                new EmailMaskingStrategyImpl()
+                        )
+                );
+
+        assertThrows(
+                MaskingException.class,
+                () -> limitedService.mask(
+                        "4556123412345678",
+                        MaskType.CARD_NUMBER
+                )
+        );
+    }
+
+    @Test
+    void shouldRejectDuplicateStrategies() {
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> new MaskingStrategyHandler(
+                        List.of(
+                                new EmailMaskingStrategyImpl(),
+                                new EmailMaskingStrategyImpl()
+                        )
+                )
+        );
+    }
+
+    @Test
+    void shouldRejectNullMaskingOptions() {
+        assertThrows(
+                NullPointerException.class,
+                () -> maskerService.mask(
+                        "Nasly",
+                        MaskType.PERSON_NAME,
+                        null
+                )
+        );
+    }
+
+    @Test
+    void shouldReturnNullValueUnchanged() {
         assertNull(
-                handler.mask(
+                maskerService.mask(
                         null,
-                        MaskType.EMAIL
+                        MaskType.PERSON_NAME
                 )
         );
     }
 
     @Test
     void shouldReturnBlankValueUnchanged() {
-        MaskingStrategyHandler handler = new MaskingStrategyHandler(List.of());
-
         assertEquals(
-                " ",
-                handler.mask(" ", MaskType.EMAIL));
-    }
-
-    @Test
-    void shouldRejectDuplicateMaskingStrategies() {
-        MaskingStrategy first = new TestMaskingStrategy(MaskType.EMAIL, "FIRST");
-        MaskingStrategy second = new TestMaskingStrategy(MaskType.EMAIL, "SECOND");
-
-        IllegalArgumentException exception = assertThrows(
-                IllegalArgumentException.class,
-                () -> new MaskingStrategyHandler(
-                        List.of(first, second)
+                "   ",
+                maskerService.mask(
+                        "   ",
+                        MaskType.PERSON_NAME
                 )
         );
-
-        assertEquals(
-                "Duplicate masking strategy for type: EMAIL",
-                exception.getMessage()
-        );
     }
-
-    @Test
-    void shouldThrowExceptionWhenStrategyIsNotRegistered() {
-        MaskingStrategyHandler handler = new MaskingStrategyHandler(List.of());
-
-        MaskingException exception = assertThrows(
-                MaskingException.class,
-                () -> handler.mask(
-                        "999999999",
-                        MaskType.PHONE
-                )
-        );
-
-        assertEquals(
-                "No masking strategy registered for type: PHONE",
-                exception.getMessage()
-        );
-    }
-
-    private record TestMaskingStrategy(
-            MaskType type,
-            String result
-    ) implements MaskingStrategy {
-
-        @Override
-        public MaskType supports() {
-            return type;
-        }
-
-        @Override
-        public String mask(String value) {
-            return result;
-        }
-    }
-
-
 }

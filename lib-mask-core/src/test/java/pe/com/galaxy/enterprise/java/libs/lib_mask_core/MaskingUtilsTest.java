@@ -1,72 +1,81 @@
 package pe.com.galaxy.enterprise.java.libs.lib_mask_core;
 
 import org.junit.jupiter.api.Test;
+import pe.com.galaxy.enterprise.java.libs.lib_mask_core.model.MaskingOptions;
 import pe.com.galaxy.enterprise.java.libs.lib_mask_core.model.MaskType;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-/**
- * Unit tests for the {@link MaskingUtils} convenience utility.
- *
- * <p>Verifies that the predefined masking strategies are correctly
- * registered and accessible through the static masking facade.</p>
- *
- * @since 0.0.1
- */
-public class MaskingUtilsTest {
+class MaskingUtilsTest {
 
     @Test
-    void shouldMaskEmail() {
-        assertEquals(
-                "o****@gmail.com",
+    void shouldMaskPersonNameUsingDefaultConfiguration() {
+        String result =
                 MaskingUtils.mask(
-                        "oscar@gmail.com",
-                        MaskType.EMAIL
-                )
+                        "Nasly",
+                        MaskType.PERSON_NAME
+                );
+
+        assertEquals(
+                "N****",
+                result
         );
     }
 
     @Test
-    void shouldMaskCardNumber() {
-        assertEquals(
-                "4111********1111",
+    void shouldMaskPersonNameUsingCustomConfiguration() {
+        String result =
                 MaskingUtils.mask(
-                        "4111111111111111",
-                        MaskType.CARD_NUMBER
-                )
+                        "Nasly",
+                        MaskType.PERSON_NAME,
+                        new MaskingOptions(
+                                2,
+                                0,
+                                '*'
+                        )
+                );
+
+        assertEquals(
+                "Na***",
+                result
         );
     }
 
     @Test
-    void shouldMaskPhone() {
-        assertEquals(
-                "*****5678",
+    void shouldMaskEmailUsingCustomConfiguration() {
+        String result =
                 MaskingUtils.mask(
-                        "999995678",
-                        MaskType.PHONE
-                )
+                        "nasly.gomez@email.com",
+                        MaskType.EMAIL,
+                        new MaskingOptions(
+                                2,
+                                2,
+                                '*'
+                        )
+                );
+
+        assertEquals(
+                "na*******ez@email.com",
+                result
         );
     }
 
     @Test
-    void shouldMaskDocument() {
-        assertEquals(
-                "****5678",
+    void shouldMaskCardUsingCustomConfiguration() {
+        String result =
                 MaskingUtils.mask(
-                        "12345678",
-                        MaskType.DOCUMENT
-                )
-        );
-    }
+                        "4556123412345678",
+                        MaskType.CARD_NUMBER,
+                        new MaskingOptions(
+                                6,
+                                4,
+                                '*'
+                        )
+                );
 
-    @Test
-    void shouldMaskAccountNumber() {
         assertEquals(
-                "******7890",
-                MaskingUtils.mask(
-                        "1234567890",
-                        MaskType.ACCOUNT_NUMBER
-                )
+                "455612******5678",
+                result
         );
     }
 }

@@ -1,22 +1,21 @@
 package pe.com.galaxy.enterprise.java.libs.lib_mask_core;
 
-import pe.com.galaxy.enterprise.java.libs.lib_mask_core.strategy.*;
 import pe.com.galaxy.enterprise.java.libs.lib_mask_core.contract.MaskerService;
 import pe.com.galaxy.enterprise.java.libs.lib_mask_core.handler.MaskingStrategyHandler;
+import pe.com.galaxy.enterprise.java.libs.lib_mask_core.model.MaskingOptions;
 import pe.com.galaxy.enterprise.java.libs.lib_mask_core.model.MaskType;
-import pe.com.galaxy.enterprise.java.libs.lib_mask_core.strategy.*;
+import pe.com.galaxy.enterprise.java.libs.lib_mask_core.strategy.AccountMaskingStrategyImpl;
+import pe.com.galaxy.enterprise.java.libs.lib_mask_core.strategy.CardMaskingStrategyImpl;
+import pe.com.galaxy.enterprise.java.libs.lib_mask_core.strategy.DocumentMaskingStrategyImpl;
+import pe.com.galaxy.enterprise.java.libs.lib_mask_core.strategy.EmailMaskingStrategyImpl;
+import pe.com.galaxy.enterprise.java.libs.lib_mask_core.strategy.PersonNameMaskingStrategyImpl;
+import pe.com.galaxy.enterprise.java.libs.lib_mask_core.strategy.PhoneMaskingStrategyImpl;
 
 import java.util.List;
 
 /**
- * Convenience utility providing access to the default masking strategies
- * included in the library.
- *
- * <p>The utility maintains a predefined {@link MaskerService} containing
- * strategies for account numbers, card numbers, documents, email addresses,
- * and phone numbers.</p>
- *
- * <p>This class cannot be instantiated.</p>
+ * Convenience facade exposing the default masking strategies included
+ * with the library.
  *
  * @since 0.0.1
  */
@@ -29,7 +28,8 @@ public final class MaskingUtils {
                             new CardMaskingStrategyImpl(),
                             new DocumentMaskingStrategyImpl(),
                             new EmailMaskingStrategyImpl(),
-                            new PhoneMaskingStrategyImpl()
+                            new PhoneMaskingStrategyImpl(),
+                            new PersonNameMaskingStrategyImpl()
                     )
             );
 
@@ -37,17 +37,42 @@ public final class MaskingUtils {
     }
 
     /**
-     * Masks the specified value using the default strategy associated with
-     * the requested {@link MaskType}.
+     * Masks a value using the default behavior associated with the
+     * specified type.
      *
      * @param value value to mask
-     * @param type type of masking to apply
-     * @return the masked value
+     * @param type masking type
+     * @return masked value
      */
     public static String mask(
             String value,
             MaskType type
     ) {
-        return MASKER.mask(value, type);
+        return MASKER.mask(
+                value,
+                type
+        );
+    }
+
+    /**
+     * Masks a value using custom masking options.
+     *
+     * @param value value to mask
+     * @param type masking type
+     * @param options masking configuration
+     * @return masked value
+     *
+     * @since 1.2.0
+     */
+    public static String mask(
+            String value,
+            MaskType type,
+            MaskingOptions options
+    ) {
+        return MASKER.mask(
+                value,
+                type,
+                options
+        );
     }
 }

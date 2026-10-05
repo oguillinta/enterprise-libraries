@@ -1,22 +1,22 @@
 package pe.com.galaxy.enterprise.java.libs.lib_mask_core.strategy;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import pe.com.galaxy.enterprise.java.libs.lib_mask_core.model.MaskingOptions;
 import pe.com.galaxy.enterprise.java.libs.lib_mask_core.model.MaskType;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
-/**
- * Unit tests for the {@link CardMaskingStrategyImpl}.
- *
- * <p>Verifies card-number masking, short-value behavior,
- * and supported mask type.</p>
- *
- * @since 0.0.1
- */
-public class CardMaskingStrategyImplTest {
+class CardMaskingStrategyImplTest {
 
-    private final CardMaskingStrategyImpl strategy =
-            new CardMaskingStrategyImpl();
+    private CardMaskingStrategyImpl strategy;
+
+    @BeforeEach
+    void setUp() {
+        strategy =
+                new CardMaskingStrategyImpl();
+    }
 
     @Test
     void shouldSupportCardNumberMaskType() {
@@ -27,26 +27,127 @@ public class CardMaskingStrategyImplTest {
     }
 
     @Test
-    void shouldMaskCardKeepingFirstAndLastFourCharacters() {
+    void shouldMaskCardUsingDefaultConfiguration() {
+        String result =
+                strategy.mask(
+                        "4556123412345678"
+                );
+
         assertEquals(
-                "4111********1111",
-                strategy.mask("4111111111111111")
+                "4556********5678",
+                result
         );
     }
 
     @Test
-    void shouldMaskEntireShortCardValue() {
+    void shouldMaskCardUsingCustomVisiblePrefix() {
+        MaskingOptions options =
+                new MaskingOptions(
+                        6,
+                        4,
+                        '*'
+                );
+
+        String result =
+                strategy.mask(
+                        "4556123412345678",
+                        options
+                );
+
         assertEquals(
-                "*******",
-                strategy.mask("1234567")
+                "455612******5678",
+                result
         );
     }
 
     @Test
-    void shouldPreserveEightCharacterValue() {
+    void shouldMaskCardUsingCustomPrefixAndSuffix() {
+        MaskingOptions options =
+                new MaskingOptions(
+                        2,
+                        2,
+                        '*'
+                );
+
+        String result =
+                strategy.mask(
+                        "4556123412345678",
+                        options
+                );
+
         assertEquals(
-                "12345678",
-                strategy.mask("12345678")
+                "45************78",
+                result
+        );
+    }
+
+    @Test
+    void shouldMaskCardUsingCustomMaskCharacter() {
+        MaskingOptions options =
+                new MaskingOptions(
+                        4,
+                        4,
+                        '#'
+                );
+
+        String result =
+                strategy.mask(
+                        "4556123412345678",
+                        options
+                );
+
+        assertEquals(
+                "4556########5678",
+                result
+        );
+    }
+
+    @Test
+    void shouldKeepAtLeastOneCharacterMasked() {
+        MaskingOptions options =
+                new MaskingOptions(
+                        100,
+                        100,
+                        '*'
+                );
+
+        String result =
+                strategy.mask(
+                        "1234",
+                        options
+                );
+
+        assertEquals(
+                "123*",
+                result
+        );
+    }
+
+    @Test
+    void shouldMaskSingleCharacterValue() {
+        String result =
+                strategy.mask(
+                        "4"
+                );
+
+        assertEquals(
+                "*",
+                result
+        );
+    }
+
+    @Test
+    void shouldReturnNullWhenValueIsNull() {
+        assertNull(
+                strategy.mask(null)
+        );
+    }
+
+    @Test
+    void shouldReturnBlankValueUnchanged() {
+        assertEquals(
+                "   ",
+                strategy.mask("   ")
         );
     }
 }

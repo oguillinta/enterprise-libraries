@@ -1,29 +1,48 @@
 package pe.com.galaxy.enterprise.java.libs.lib_mask_core.strategy;
 
+import pe.com.galaxy.enterprise.java.libs.lib_mask_core.model.MaskingOptions;
 import pe.com.galaxy.enterprise.java.libs.lib_mask_core.model.MaskType;
 
 /**
- * Defines a strategy for masking a specific category of sensitive data.
- *
- * <p>Each implementation declares the {@link MaskType} it supports and
- * provides the corresponding masking behavior.</p>
+ * Defines a masking algorithm associated with a specific
+ * {@link MaskType}.
  *
  * @since 0.0.1
  */
 public interface MaskingStrategy {
 
     /**
-     * Returns the masking type supported by this strategy.
+     * Returns the mask type supported by this strategy.
      *
-     * @return the supported mask type
+     * @return supported mask type
      */
     MaskType supports();
 
     /**
-     * Masks the specified value according to the strategy rules.
+     * Masks the specified value using the strategy's default behavior.
      *
-     * @param value the value to mask
-     * @return the masked representation of the value
+     * @param value value to mask
+     * @return masked value
      */
     String mask(String value);
+
+    /**
+     * Masks the specified value using configurable masking options.
+     *
+     * <p>The default implementation preserves backward compatibility
+     * by delegating to {@link #mask(String)}. Strategies that support
+     * configurable options can override this method.</p>
+     *
+     * @param value value to mask
+     * @param options masking configuration
+     * @return masked value
+     *
+     * @since 1.2.0
+     */
+    default String mask(
+            String value,
+            MaskingOptions options
+    ) {
+        return mask(value);
+    }
 }
