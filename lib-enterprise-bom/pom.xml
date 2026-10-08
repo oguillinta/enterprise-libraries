@@ -28,6 +28,25 @@
         <lib.validation.core.version>1.0.0</lib.validation.core.version>
     </properties>
 
+    <scm>
+        <connection>
+            scm:git:https://github.com/oguillinta/enterprise-libraries.git
+        </connection>
+        <developerConnection>
+            scm:git:ssh://git@github.com/oguillinta/enterprise-libraries.git
+        </developerConnection>
+        <tag>HEAD</tag>
+        <url>https://github.com/oguillinta/enterprise-libraries</url>
+    </scm>
+
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub Packages</name>
+            <url>https://maven.pkg.github.com/oguillinta/enterprise-libraries</url>
+        </repository>
+    </distributionManagement>
+
     <dependencyManagement>
         <dependencies>
 
