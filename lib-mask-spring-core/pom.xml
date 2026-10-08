@@ -44,7 +44,7 @@
 		<maven.source.plugin.version>3.3.1</maven.source.plugin.version>
 		<maven.javadoc.plugin.version>3.11.2</maven.javadoc.plugin.version>
 
-		<lib.mask.core.version>1.1.0</lib.mask.core.version>
+		<lib.mask.core.version>1.2.0</lib.mask.core.version>
 
 		<spring.context.version>7.0.9</spring.context.version>
 
