@@ -1,60 +1,142 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="
+             http://maven.apache.org/POM/4.0.0
+             https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
 	<modelVersion>4.0.0</modelVersion>
+
 	<groupId>pe.com.galaxy.enterprise.java.libs</groupId>
 	<artifactId>lib-encrypt-spring-core</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name/>
-	<description/>
-	<url/>
+	<version>1.0.0</version>
+
+	<name>lib-encrypt-spring-core</name>
+
+	<description>
+		Spring integration library for reusable encryption services in Java applications
+	</description>
+
+	<url>
+		https://github.com/oguillinta/enterprise-libraries
+	</url>
+
 	<licenses>
-		<license/>
+		<license>
+			<name>Apache License 2.0</name>
+			<url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
 	</licenses>
+
 	<developers>
-		<developer/>
+		<developer>
+			<id>oguillinta</id>
+			<name>Oscar Guillinta</name>
+			<roles>
+				<role>Developer</role>
+			</roles>
+		</developer>
 	</developers>
+
 	<scm>
-		<connection/>
-		<developerConnection/>
-		<tag/>
-		<url/>
+		<connection>
+			scm:git:https://github.com/oguillinta/enterprise-libraries.git
+		</connection>
+
+		<developerConnection>
+			scm:git:ssh://git@github.com/oguillinta/enterprise-libraries.git
+		</developerConnection>
+
+		<tag>HEAD</tag>
+
+		<url>
+			https://github.com/oguillinta/enterprise-libraries
+		</url>
 	</scm>
+
 	<properties>
 		<java.version>25</java.version>
+
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
 		<org.junit.jupiter.version>5.13.4</org.junit.jupiter.version>
+
+		<lib.encrypt.core.version>1.0.0</lib.encrypt.core.version>
+
+		<spring.context.version>7.0.9</spring.context.version>
+		<jakarta.persistence.version>3.2.0</jakarta.persistence.version>
+
+		<maven.compiler.plugin.version>3.14.0</maven.compiler.plugin.version>
+		<maven.surefire.plugin.version>3.5.4</maven.surefire.plugin.version>
+		<maven.source.plugin.version>3.3.1</maven.source.plugin.version>
+		<maven.javadoc.plugin.version>3.11.2</maven.javadoc.plugin.version>
 	</properties>
+
+	<distributionManagement>
+		<repository>
+			<id>github</id>
+			<name>GitHub Packages</name>
+			<url>
+				https://maven.pkg.github.com/oguillinta/enterprise-libraries
+			</url>
+		</repository>
+	</distributionManagement>
+
 	<dependencies>
+
+		<dependency>
+			<groupId>pe.com.galaxy.enterprise.java.libs</groupId>
+			<artifactId>lib-encrypt-core</artifactId>
+			<version>${lib.encrypt.core.version}</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
-			<version>7.0.9</version>
+			<version>${spring.context.version}</version>
 		</dependency>
+
+		<dependency>
+			<groupId>jakarta.persistence</groupId>
+			<artifactId>jakarta.persistence-api</artifactId>
+			<version>${jakarta.persistence.version}</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter</artifactId>
 			<version>${org.junit.jupiter.version}</version>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>pe.com.galaxy.enterprise.java.libs</groupId>
-			<artifactId>lib-encrypt-core</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>jakarta.persistence</groupId>
-			<artifactId>jakarta.persistence-api</artifactId>
-			<version>3.2.0</version>
-		</dependency>
+
 	</dependencies>
 
 	<build>
 		<plugins>
-			<!-- Generates lib-name-version-sources.jar -->
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven.compiler.plugin.version}</version>
+
+				<configuration>
+					<release>${java.version}</release>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${maven.surefire.plugin.version}</version>
+			</plugin>
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-source-plugin</artifactId>
-				<version>3.3.1</version>
+				<version>${maven.source.plugin.version}</version>
+
 				<executions>
 					<execution>
 						<id>attach-sources</id>
@@ -65,11 +147,11 @@
 				</executions>
 			</plugin>
 
-			<!-- Generates lib-name-version-javadoc.jar -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>3.11.2</version>
+				<version>${maven.javadoc.plugin.version}</version>
+
 				<executions>
 					<execution>
 						<id>attach-javadocs</id>
@@ -79,14 +161,7 @@
 					</execution>
 				</executions>
 			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>25</source>
-					<target>25</target>
-				</configuration>
-			</plugin>
+
 		</plugins>
 	</build>
 

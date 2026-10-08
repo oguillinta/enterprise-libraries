@@ -4,10 +4,10 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>pe.com.galaxy.enterprise.java.libs</groupId>
-	<artifactId>lib-encryption-core</artifactId>
+	<artifactId>lib-encrypt-core</artifactId>
 	<version>1.0.0</version>
 
-	<name>lib-encryption-core</name>
+	<name>lib-encrypt-core</name>
 
 	<description>
 		Reusable encryption abstractions and AES-256-GCM implementation for secure Java applications
