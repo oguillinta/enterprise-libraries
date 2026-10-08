@@ -1,0 +1,137 @@
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+}
+
+group = 'pe.com.galaxy.enterprise.java.libs'
+version = '1.0.0'
+
+description = 'Reusable application-layer primitives for CQRS-based Java applications'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(25)
+    }
+
+    withSourcesJar()
+    withJavadocJar()
+}
+
+repositories {
+    mavenCentral()
+
+    maven {
+        name 'azureArtifacts'
+
+        url 'https://pkgs.dev.azure.com/iogui-enterprise/iogui-enterprise-libraries/_packaging/enterprise-libraries/maven/v1'
+
+        credentials(PasswordCredentials)
+
+        authentication {
+            basic(BasicAuthentication)
+        }
+    }
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.13.4'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.release = 25
+    options.encoding = 'UTF-8'
+}
+
+tasks.withType(Javadoc).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+publishing {
+
+    publications {
+
+        mavenJava(MavenPublication) {
+
+            from components.java
+
+            artifactId = 'lib-application-core-gradle'
+
+            pom {
+                name = 'lib-application-core-gradle'
+
+                description =
+                        'Reusable application-layer primitives for CQRS-based Java applications'
+
+                licenses {
+                    license {
+                        name = 'Apache License 2.0'
+                        url = 'https://www.apache.org/licenses/LICENSE-2.0.txt'
+                        distribution = 'repo'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id = 'oguillinta'
+                        name = 'Oscar Guillinta'
+                        roles = ['Developer']
+                    }
+                }
+
+                scm {
+                    connection =
+                            'scm:git:https://github.com/oguillinta/enterprise-libraries.git'
+
+                    developerConnection =
+                            'scm:git:ssh://git@github.com/oguillinta/enterprise-libraries.git'
+
+                    url =
+                            'https://github.com/oguillinta/enterprise-libraries'
+                }
+            }
+        }
+    }
+
+    repositories {
+
+        maven {
+            name 'azureArtifacts'
+
+            url 'https://pkgs.dev.azure.com/iogui-enterprise/iogui-enterprise-libraries/_packaging/enterprise-libraries/maven/v1'
+
+            credentials(PasswordCredentials)
+
+            authentication {
+                basic(BasicAuthentication)
+            }
+        }
+
+        maven {
+            name = 'nexus'
+
+            def releasesUrl =
+                    'http://localhost:8081/repository/maven-releases/'
+
+            def snapshotsUrl =
+                    'http://localhost:8081/repository/maven-snapshots/'
+
+            url = uri(
+                    version.endsWith('SNAPSHOT')
+                            ? snapshotsUrl
+                            : releasesUrl
+            )
+
+            allowInsecureProtocol = true
+
+            credentials {
+                username = findProperty('nexusUsername')
+                password = findProperty('nexusPassword')
+            }
+        }
+    }
+}
