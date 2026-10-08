@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>pe.com.galaxy.enterprise.java.libs</groupId>
+    <artifactId>lib-enterprise-bom</artifactId>
+    <version>1.0.0</version>
+
+    <packaging>pom</packaging>
+
+    <name>lib-enterprise-bom</name>
+
+    <description>
+        Corporate BOM for Galaxy Enterprise Java Libraries
+    </description>
+
+    <properties>
+        <lib.domain.core.version>1.0.0</lib.domain.core.version>
+        <lib.application.core.version>1.0.0</lib.application.core.version>
+        <lib.mask.core.version>1.2.0</lib.mask.core.version>
+        <lib.mask.spring.core.version>1.2.0</lib.mask.spring.core.version>
+        <lib.encrypt.core.version>1.0.0</lib.encrypt.core.version>
+        <lib.encrypt.spring.core.version>1.0.0</lib.encrypt.spring.core.version>
+        <lib.log.core.version>1.1.0</lib.log.core.version>
+        <lib.mapper.core.version>1.0.0</lib.mapper.core.version>
+        <lib.validation.core.version>1.0.0</lib.validation.core.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+
+            <dependency>
+                <groupId>pe.com.galaxy.enterprise.java.libs</groupId>
+                <artifactId>lib-domain-core</artifactId>
+                <version>${lib.domain.core.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>pe.com.galaxy.enterprise.java.libs</groupId>
+                <artifactId>lib-application-core</artifactId>
+                <version>${lib.application.core.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>pe.com.galaxy.enterprise.java.libs</groupId>
+                <artifactId>lib-mask-core</artifactId>
+                <version>${lib.mask.core.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>pe.com.galaxy.enterprise.java.libs</groupId>
+                <artifactId>lib-mask-spring-core</artifactId>
+                <version>${lib.mask.spring.core.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>pe.com.galaxy.enterprise.java.libs</groupId>
+                <artifactId>lib-encrypt-core</artifactId>
+                <version>${lib.encrypt.core.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>pe.com.galaxy.enterprise.java.libs</groupId>
+                <artifactId>lib-encrypt-spring-core</artifactId>
+                <version>${lib.encrypt.spring.core.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>pe.com.galaxy.enterprise.java.libs</groupId>
+                <artifactId>lib-log-core</artifactId>
+                <version>${lib.log.core.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>pe.com.galaxy.enterprise.java.libs</groupId>
+                <artifactId>lib-mapper-core</artifactId>
+                <version>${lib.mapper.core.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>pe.com.galaxy.enterprise.java.libs</groupId>
+                <artifactId>lib-validation-core</artifactId>
+                <version>${lib.validation.core.version}</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+</project>

@@ -109,5 +109,28 @@ publishing {
                 basic(BasicAuthentication)
             }
         }
+
+        maven {
+            name = 'nexus'
+
+            def releasesUrl =
+                    'http://localhost:8081/repository/maven-releases/'
+
+            def snapshotsUrl =
+                    'http://localhost:8081/repository/maven-snapshots/'
+
+            url = uri(
+                    version.endsWith('SNAPSHOT')
+                            ? snapshotsUrl
+                            : releasesUrl
+            )
+
+            allowInsecureProtocol = true
+
+            credentials {
+                username = findProperty('nexusUsername')
+                password = findProperty('nexusPassword')
+            }
+        }
     }
 }
