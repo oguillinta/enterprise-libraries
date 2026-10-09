@@ -6,7 +6,7 @@
 
     <groupId>pe.com.galaxy.enterprise.java.libs</groupId>
     <artifactId>lib-enterprise-bom</artifactId>
-    <version>1.3.0</version>
+    <version>1.4.0</version>
 
     <packaging>pom</packaging>
 
