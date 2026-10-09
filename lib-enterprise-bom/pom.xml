@@ -6,7 +6,7 @@
 
     <groupId>pe.com.galaxy.enterprise.java.libs</groupId>
     <artifactId>lib-enterprise-bom</artifactId>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
 
     <packaging>pom</packaging>
 
@@ -26,6 +26,8 @@
         <lib.log.core.version>1.1.0</lib.log.core.version>
         <lib.mapper.core.version>1.0.0</lib.mapper.core.version>
         <lib.validation.core.version>1.0.0</lib.validation.core.version>
+        <lib.string.spring.wrapper.version>1.0.1</lib.string.spring.wrapper.version>
+        <lib.date.spring.wrapper.version>1.0.0</lib.date.spring.wrapper.version>
     </properties>
 
     <scm>
@@ -102,6 +104,18 @@
                 <groupId>pe.com.galaxy.enterprise.java.libs</groupId>
                 <artifactId>lib-validation-core</artifactId>
                 <version>${lib.validation.core.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>pe.com.galaxy.enterprise.java.libs</groupId>
+                <artifactId>lib-string-spring-wrapper</artifactId>
+                <version>${lib.string.spring.wrapper.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>pe.com.galaxy.enterprise.java.libs</groupId>
+                <artifactId>lib-date-spring-wrapper</artifactId>
+                <version>${lib.date.spring.wrapper.version}</version>
             </dependency>
 
         </dependencies>
