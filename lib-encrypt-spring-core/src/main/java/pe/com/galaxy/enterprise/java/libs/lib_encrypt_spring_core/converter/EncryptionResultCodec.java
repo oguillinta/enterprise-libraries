@@ -1,4 +1,4 @@
-package pe.com.galaxy.enterprise.java.libs.lib_encrypt_core.converter;
+package pe.com.galaxy.enterprise.java.libs.lib_encrypt_spring_core.converter;
 
 import pe.com.galaxy.enterprise.java.libs.lib_encrypt_core.model.EncryptionResult;
 

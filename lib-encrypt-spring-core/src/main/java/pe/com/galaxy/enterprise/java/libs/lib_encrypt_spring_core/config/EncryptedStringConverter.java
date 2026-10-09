@@ -1,9 +1,9 @@
-package pe.com.galaxy.enterprise.java.libs.lib_encrypt_core.config;
+package pe.com.galaxy.enterprise.java.libs.lib_encrypt_spring_core.config;
 
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 import pe.com.galaxy.enterprise.java.libs.lib_encrypt_core.contract.EncryptionService;
-import pe.com.galaxy.enterprise.java.libs.lib_encrypt_core.converter.EncryptionResultCodec;
+import pe.com.galaxy.enterprise.java.libs.lib_encrypt_spring_core.converter.EncryptionResultCodec;
 import pe.com.galaxy.enterprise.java.libs.lib_encrypt_core.model.EncryptionResult;
 
 @Converter

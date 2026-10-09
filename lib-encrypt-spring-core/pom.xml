@@ -9,7 +9,7 @@
 
 	<groupId>pe.com.galaxy.enterprise.java.libs</groupId>
 	<artifactId>lib-encrypt-spring-core</artifactId>
-	<version>1.0.0</version>
+	<version>1.1.0</version>
 
 	<name>lib-encrypt-spring-core</name>
 
@@ -58,6 +58,8 @@
 	<properties>
 		<java.version>25</java.version>
 
+		<spring.boot.version>4.1.0</spring.boot.version>
+
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
@@ -85,6 +87,12 @@
 	</distributionManagement>
 
 	<dependencies>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-autoconfigure</artifactId>
+			<version>${spring.boot.version}</version>
+		</dependency>
 
 		<dependency>
 			<groupId>pe.com.galaxy.enterprise.java.libs</groupId>

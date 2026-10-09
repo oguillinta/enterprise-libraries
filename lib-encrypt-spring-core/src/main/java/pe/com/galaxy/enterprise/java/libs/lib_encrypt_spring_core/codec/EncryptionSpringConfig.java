@@ -1,4 +1,4 @@
-package pe.com.galaxy.enterprise.java.libs.lib_encrypt_core.codec;
+package pe.com.galaxy.enterprise.java.libs.lib_encrypt_spring_core.codec;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
