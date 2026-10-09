@@ -1,4 +1,4 @@
-package pe.com.galaxy.enterprise.java.libs.lib_mask_spring_core.configuration;
+package pe.com.galaxy.enterprise.java.libs.lib_mask_spring_core.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
